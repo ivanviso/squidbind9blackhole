@@ -12,8 +12,8 @@ for host in hosts:
 
 
 def bindhost(host):
-    zone='{ type master; notify no; file "null.zone.file"; };'
-    host="zone \" IN"+host+"\" "
+    zone='IN { type master; notify no; file "null.zone.file"; };'
+    host="zone \""+host+"\" "
     return host+zone
 
 def squidhost(host):
