@@ -1,5 +1,5 @@
 import requests
-
+import os
 lista='https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts'
 r = requests.get(lista, allow_redirects=True)
 hosts=r.content.decode()
@@ -28,12 +28,13 @@ for host in hostlist:
     bindhostlist.append(bindhost(host))
     squidhostlist.append(squidhost(host))
 
-with open("C:/Users/Ivan/Desktop/bind-blackhole.conf", 'w') as f:
+with open("/etc/named/blackhole.zones", 'w') as f:
     for host in bindhostlist:
         f.write(host+"\n")
     f.close
-with open('squid-blackhole.conf', 'w') as f:
+with open('/etc/squid/squid_blackhole.conf', 'w') as f:
     for host in squidhostlist:
         f.write(host+"\n")
-
     f.close
+os.system('rndc reload')
+os.system('squid -k reconfigure')
