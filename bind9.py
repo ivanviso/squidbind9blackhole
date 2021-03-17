@@ -50,7 +50,10 @@ $TTL	864000	; ten days
 
 		A	0.0.0.0
 
-*		IN      A       0.0.0.0""")
+*		IN      A       0.0.0.0
+
+
+""")
     f.close
 
 os.system('rndc reload')
