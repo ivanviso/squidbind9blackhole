@@ -30,7 +30,7 @@ for host in hostlist:
 
 with open("/etc/named/blackhole.zones", 'w') as f:
     for host in bindhostlist:
-        f.write(host+"\n")
+        f.write(host.replace("_","-")+"\n")
     f.close
 with open('/etc/squid/squid_blackhole.conf', 'w') as f:
     for host in squidhostlist:
