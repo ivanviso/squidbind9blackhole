@@ -13,7 +13,7 @@ for host in hosts:
 
 def bindhost(host):
     zone='{ type master; notify no; file "null.zone.file"; };'
-    host="zone \""+host+"\" "
+    host="zone \" IN"+host+"\" "
     return host+zone
 
 def squidhost(host):
